@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Projeto Modelo{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <header>
+
+        <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo">
+        <div class="headh">
+
+            <div class="btnacesso">
+                <a class="btn {% if request.resolver_match.url_name == 'homepage' %}active{% endif %}" href="{% url 'homepage' %}">Home</a>
+                <a class="btn {% if request.resolver_match.url_name == 'produto_list' %}active{% endif %}" href="{% url 'produto_list' %}">Produto</a>
+                <a class="btn {% if request.resolver_match.url_name == 'categoria_list' %}active{% endif %}" href="{% url 'categoria_list' %}">Categoria</a>
+                <a class="btn {% if request.resolver_match.url_name == 'movimentacao_list' %}active{% endif %}" href="{% url 'movimentacao_list' %}">Movimentação</a>
+            </div>
+
+            <div class="direita">
+                <a class="btn {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="{% url 'profile' %}">Perfil</a>
+                <form action="{% url 'logout' %}" method="post" class="logout-form" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Sair</button>
+                </form>
+            </div>
+            
+        </div>
+    </header>
+    
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <p>© 2024 <a href="https://www.youtube.com/watch?v=XfqOB4hvxlY">RP²</a> - Todos os direitos reservados.</p>
+        <a href="{% static 'police.pdf' %}" download="police.pdf">Política de Privacidade</a>
+        <div class="icones">
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-linkedin"></i>
+            <i class="bi bi-whatsapp"></i>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login do Sistema</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+    </header>
+
+    <div class="container">
+        <h2>Login</h2>
+        
+        <form class="" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        {% if form.errors %}
+            <p style="color: red;">Usuário e senha inválidos</p>
+        {% endif %}
+    </div>
+
+    <footer></footer>
+</body>
+</html>

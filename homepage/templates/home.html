@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+    <h1>Produtos em Destaque</h1>
+    <div class="produtos-list">
+        {% for produto in produtos %}
+        <div class="produto-card">
+            <!-- Exibindo a imagem do produto -->
+             <div class="card_imagem">
+                 <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+            </div>
+            <div class="produto-info">
+                <!-- Exibindo o nome do produto -->
+                <h2>{{ produto.nome }}</h2>
+                <!-- Exibindo a quantidade do produto -->
+                <p>Quantidade: {{ produto.quantidade }}</p>
+                <!-- Exibindo o preço do produto -->
+                <p>Preço: R$ {{ produto.preco|floatformat:2 }}</p>
+            </div>
+        </div>
+        {% empty %}
+            <p>Nenhum produto encontrado.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
